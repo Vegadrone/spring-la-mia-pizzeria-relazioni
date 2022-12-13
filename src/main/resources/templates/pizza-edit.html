@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifica la tua pizza</title>
+</head>
+<body>
+	
+	<h1>Modifica la tua pizza</h1>
+
+	<div
+		th:if="${errors}"
+	>
+		ERROR:<br>
+		<ul>
+			<li
+				th:each="error : ${errors}"
+				th:object="${error}"
+			>
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+		<form>
+		<label>Name: </label>
+		<input type="text" name="q" th:value="${query}">
+		<br><br>
+		<input type="submit" value="SEARCH">
+	</form>
+
+    <form 
+		method="POST" 
+		action="/pizza/edit"
+		th:object="${pizza}" >
+
+        <input type="number" name="id" th:field="*{id}" style="display:none">
+	
+		<label>Nome</label>
+		<input type="text" name="nome" th:field="*{nome}">
+		<br>
+		<label>Descrizione</label>
+		<input type="text" name="descrizione" th:field="*{descrizione}">
+		<br>
+		<label>Prezzo</label>
+		<input type="number" name="prezzo" th:field="*{prezzo}">
+        <input type="submit" value="UPDATE">
+	</form>
+</body>
+</html>

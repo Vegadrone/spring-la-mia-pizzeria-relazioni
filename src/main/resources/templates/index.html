@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza and Drinks</title>
+</head>
+<body>
+     <a href="/pizza/create">Crea la tua pizza</a>
+     <a href="/search">Cerca la tua pizza</a>
+     <div
+		th:if="${errors}"
+	>
+		ERROR:<br>
+		<ul>
+			<li
+				th:each="error : ${errors}"
+				th:object="${error}"
+			>
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+
+    <ul>
+        <li 
+            th:each="pizza :${pizze}"
+            th:object="${pizza}"
+        >
+        <span>Nome: </span>[[*{nome}]] <br>
+        <span>Descrizione: </span>[[*{descrizione}]] <br>
+        <span>Prezzo: </span>[[*{prezzo}]] <span> €</span> <br>
+        <a th:href="@{/pizza/edit/{id}(id=${pizza.id})}">UPDATE</a> - <a th:href="@{/pizza/delete/{id}(id=${pizza.id})}">DELETE</a>
+        </li>
+    </ul>
+    <h1 th:if="${pizze.isEmpty()}">Niente pizze qui</h1>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea la tua pizza</title>
+</head>
+<body>
+    <h1>Crea la tua pizza</h1>
+	<div
+		th:if="${errors}"
+	>
+		ERROR:<br>
+		<ul>
+			<li
+				th:each="error : ${errors}"
+				th:object="${error}"
+			>
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+
+
+    <form 
+		method="POST" 
+		action="/pizza/create"
+		th:object="${pizza}" >
+	
+		<label>Nome</label>
+		<input type="text" name="nome" th:field="*{nome}">
+		<br>
+		<label>Descrizione</label>
+		<input type="text" name="descrizione" th:field="*{descrizione}">
+		<br>
+		<label>Prezzo</label>
+		<input type="number" name="prezzo" th:field="*{prezzo}">
+        <input type="submit" value="CREATE">
+	</form>
+
+</body>
+</html>
