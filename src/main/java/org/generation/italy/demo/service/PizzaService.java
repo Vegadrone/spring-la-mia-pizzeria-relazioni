@@ -41,7 +41,7 @@ public class PizzaService {
 	}
 	
 	@Transactional
-	public List<Pizza> findAllWingrediente(){
+	public List<Pizza> findAllWIngrediente(){
 		List<Pizza> pizze = pizzaRepo.findAll();
 		
 		for(Pizza pizza :pizze) {
