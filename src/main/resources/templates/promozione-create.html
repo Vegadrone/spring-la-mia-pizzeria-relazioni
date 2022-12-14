@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crea la tua Promozione</title>
+</head>
+<body>
+    <h1>Crea la tua promozion</h1>
+    <form method="POST" action="/promozione/create" th:object="${promozione}">
+					<label>Titolo</label><br>
+					<input type="text" name="titolo" th:field="*{titolo}" class="mb-3">
+					<br>
+					<label>Data di inizio</label><br>
+					<input type="date" name="dataInizio" th:field="*{dataInzio}" class="mb-3">
+					<br>
+					<label>Data di fine</label><br>
+					<input type="date" name="dataFine" th:field="*{dataFine}" class="mb-3">
+					<br>
+                    <label>Pizze</label><br>
+                    <div
+                        th:each="pizza : ${pizze}"
+                        th:object="${pizza}"
+                        class="mb-3"
+                    >
+                        <input 
+                            type="checkbox" 
+                            name="pizze" 
+                            
+                            th:value="*{id}" 
+                            th:field="${promozione.pizze}">
+                        <label>[[*{nome}]]</label>
+                    </div>
+					<button type="submit">Crea</button>
+                </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promozioni</title>
+</head>
+<body>
+    <h1>Promozioni</h1>
+    <ul>
+        <li th:each="promozione : ${promozioni}" th:object="${promozione}">
+            <span>Titolo: </span>[[*{titolo}]] <br>
+            <span>Data Inizio: </span>[[*{dataInizio}]] <br>
+            <span>Data Fine: </span>[[*{dataFine}]]<br>
+        </li>
+    </ul>
+</body>
+</html>

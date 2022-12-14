@@ -5,8 +5,11 @@ import java.util.Optional;
 
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.repo.PizzaRepo;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PizzaService {
@@ -36,4 +39,16 @@ public class PizzaService {
 	public List<Pizza> findByName(String nome){
 		return pizzaRepo.findByNomeContainingIgnoreCase(nome);
 	}
+	
+	@Transactional
+	public List<Pizza> findAllWingrediente(){
+		List<Pizza> pizze = pizzaRepo.findAll();
+		
+		for(Pizza pizza :pizze) {
+			Hibernate.initialize(pizza.getIngredienti());
+		}
+		
+		return pizze;
+	}
+	
 }
